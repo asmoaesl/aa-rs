@@ -1,6 +1,8 @@
-extern crate image;
-#[macro_use] extern crate ndarray;
-extern crate string_error;
+#![feature(type_alias_enum_variants)]
+
+pub use image;
+pub use ndarray;
+pub use string_error;
 
 pub mod filter;
 pub mod utils;

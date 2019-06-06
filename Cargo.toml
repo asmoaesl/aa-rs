@@ -7,14 +7,10 @@ keywords = ["image", "png", "ascii", "art"]
 license-file = "LICENSE"
 readme = "README.md"
 description = "Modern image to ASCII art conversion library for Rust."
-
-[[bin]]
-name = "aa-rs"
-path = "src/cli.rs"
+edition = "2018"
 
 [dependencies]
-ndarray = { version = "0.10.0" }
-image = "0.18.0"
+ndarray = "0.12.1"
+image = "0.21.2"
 string-error = "0.1.0"
-getopts = "0.2"
-base64 = "~0.6.0"
+base64 = "0.10.1"

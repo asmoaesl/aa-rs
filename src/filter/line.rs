@@ -1,5 +1,5 @@
 use ndarray::*;
-use ::utils;
+use crate::utils;
 
 pub fn default() -> GradientFilter {
     let horizontal_edge_filter = Array1::<f32>::from(

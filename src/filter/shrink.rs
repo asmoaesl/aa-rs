@@ -1,6 +1,6 @@
 extern crate ndarray;
 use ndarray::*;
-use ::utils;
+use crate::utils;
 
 pub fn default() -> ShrinkFilter {
     let filter = Array1::<f32>::from(

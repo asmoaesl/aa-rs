@@ -1,7 +1,7 @@
 extern crate image;
 
 use ndarray::*;
-use image::{ImageDecoder, DecodingResult, ColorType};
+use image::{ImageDecoder, ImageResult, ColorType};
 use string_error::{static_err};
 use std::error::Error;
 use std::io::{Read, Write, Cursor};
@@ -24,21 +24,18 @@ pub fn read_image<R: Read>(mut image_file: R) -> Result<Array3<f32>, Box<Error>>
     let format = image::guess_format(&image_buffer)?;
     let image_reader = Cursor::new(image_buffer);
     match format {
-        image::ImageFormat::PNG => read_to_array(image::png::PNGDecoder::new(image_reader)),
-        image::ImageFormat::JPEG => read_to_array(image::jpeg::JPEGDecoder::new(image_reader)),
+        image::ImageFormat::PNG => read_to_array(image::png::PNGDecoder::new(image_reader)?),
+        image::ImageFormat::JPEG => read_to_array(image::jpeg::JPEGDecoder::new(image_reader)?),
         _ => Err(static_err("Unsupported file type. Only PNG and JPEG are supported.")),
     }
 }
 
-fn read_to_array<D: ImageDecoder>(mut decoder: D) -> Result<Array3<f32>, Box<Error>> {
-    let result = decoder.read_image()?;
-    let (x, y) = decoder.dimensions()?;
-    let colortype = decoder.colortype()?;
+fn read_to_array<D: ImageDecoder>(decoder: D) -> Result<Array3<f32>, Box<Error>> {
+    let (x, y) = decoder.dimensions();
+    let colortype = decoder.colortype();
+    let bytes = decoder.read_image()?;
     
-    let raw_data = match result {
-        DecodingResult::U8(v) => v.into_iter().map(|e| e as f32).collect::<Vec<f32>>(),
-        DecodingResult::U16(v) => v.into_iter().map(|e| e as f32).collect::<Vec<f32>>(),
-    };
+    let raw_data = bytes.into_iter().map(|b| b as f32).collect::<Vec<f32>>();
     let arr = Array1::<f32>::from(raw_data);
 
     match colortype {
