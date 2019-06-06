@@ -1,6 +1,3 @@
-/target/*
-!/target/doc
+/target/
+Cargo.lock
 **/*.rs.bk
-out/
-image/
-*.png
