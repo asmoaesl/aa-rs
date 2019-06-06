@@ -6,7 +6,7 @@ repository = "https://github.com/asmoaesl/aa-rs"
 keywords = ["image", "png", "ascii", "art"]
 license-file = "LICENSE"
 readme = "README.md"
-description = "Modern image to ASCII art conversion library for Rust."
+description = "Modern image to ASCII art generation library for Rust, including several post-processing filters."
 edition = "2018"
 
 [dependencies]
