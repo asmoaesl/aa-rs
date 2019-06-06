@@ -1,12 +1,12 @@
 #![feature(slice_patterns)]
 
 extern crate getopts;
-extern crate image2aa;
+extern crate aa_rs;
 
 use std::fs::File;
 use std::env;
 use getopts::Options;
-use image2aa::{filter, utils};
+use aa_rs::{filter, utils};
 
 fn setup_option_parser() -> Options {
     let mut opts = Options::new();
