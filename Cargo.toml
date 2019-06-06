@@ -1,6 +1,6 @@
 [package]
 name = "aa-rs"
-version = "0.1.3"
+version = "1.0.0"
 authors = ["Luke Wilson <asmoaesl@gmail.com>", "Yusuke Sangenya (genya0407) <longinus.eva@gmail.com>"]
 repository = "https://github.com/asmoaesl/aa-rs"
 keywords = ["image", "png", "ascii", "art"]
